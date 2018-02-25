@@ -25,23 +25,14 @@ public class PlayerGyroControl : MonoBehaviour {
 	
 	void Update () {
 
+        if (accel)
+        {
+            CameraContainer.transform.position = transform.position + Camera.main.transform.forward * distance * Time.deltaTime;
+        }
+
         if (gyroEnabled)
         {
             transform.localRotation = gyro.attitude * rot;
-
-
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                accel = true;
-            }
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
-            {
-                accel = false;
-            }
-            if (accel)
-            {
-                CameraContainer.transform.position = transform.position + Camera.main.transform.forward * distance * Time.deltaTime;
-            }
 
         }
     }
@@ -58,5 +49,9 @@ public class PlayerGyroControl : MonoBehaviour {
         return false;
     }
 
+    public void MoveForward(bool value)
+    {
+        accel = value;
+    }
 
 }
