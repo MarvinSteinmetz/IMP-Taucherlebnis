@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour {
     public Image UI_Image_L;
     public Image UI_Image_R;
     public GameObject MainUI;
+    public Button swimButton;
     
     public NPC_Controller ObjectData;
     
@@ -55,6 +56,13 @@ public class UIController : MonoBehaviour {
     public void ShowUI(bool value)
     {
         MainUI.SetActive(value);
+        if (value)
+        {
+            swimButton.interactable = false;
+        }
+        else {
+            swimButton.interactable = true;
+        }
     }
 
     private void SetElements(NPC_Controller hitData)
